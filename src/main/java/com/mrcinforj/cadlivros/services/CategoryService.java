@@ -39,6 +39,6 @@ public class CategoryService {
 	}
 
 	private void updateData(Category entity, Category obj) {
-		entity.setDesc(obj.getDesc());
+		entity.setName(obj.getName());
 	}
 }

@@ -23,7 +23,7 @@ public class Category implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String desc;
+	private String name;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "category")
@@ -33,10 +33,10 @@ public class Category implements Serializable{
 		
 	}
 		
-	public Category(Long id, String desc) {
+	public Category(Long id, String name) {
 		super();
 		this.id = id;
-		this.desc = desc;
+		this.name = name;
 	}
 
 	public Long getId() {
@@ -47,12 +47,12 @@ public class Category implements Serializable{
 		this.id = id;
 	}
 
-	public String getDesc() {
-		return desc;
+	public String getName() {
+		return name;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override
