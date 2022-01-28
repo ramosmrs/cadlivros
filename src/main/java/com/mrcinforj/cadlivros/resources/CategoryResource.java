@@ -15,30 +15,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.mrcinforj.cadlivros.entities.User;
-import com.mrcinforj.cadlivros.services.UserService;
+import com.mrcinforj.cadlivros.entities.Category;
+import com.mrcinforj.cadlivros.services.CategoryService;
 
 @RestController
-@RequestMapping(value = "/users")
-public class UserResource {
+@RequestMapping(value = "/categories")
+public class CategoryResource {
 
 	@Autowired
-	private UserService service;
+	private CategoryService service;
 	
 	@GetMapping
-	public ResponseEntity<List<User>> findAll() {
-		List<User> list =  service.findAll();
+	public ResponseEntity<List<Category>> findAll() {
+		List<Category> list =  service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<User> findbyId(@PathVariable Long id){
-		User obj = service.findById(id);
+	public ResponseEntity<Category> findbyId(@PathVariable Long id){
+		Category obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@PostMapping
-	public ResponseEntity<User> insert(@RequestBody User obj){
+	public ResponseEntity<Category> insert(@RequestBody Category obj){
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).body(obj);
@@ -51,8 +51,9 @@ public class UserResource {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User obj){
+	public ResponseEntity<Category> update(@PathVariable Long id, @RequestBody Category obj){
 		obj = service.update(id, obj);
 		return ResponseEntity.ok().body(obj);
 	}
+	
 }

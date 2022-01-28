@@ -15,32 +15,28 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "tbUser")
-public class User implements Serializable {
+@Table(name = "tbCategory")
+public class Category implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String name;
-	private String email;
-	private String phone;
-	private String password;
-    
+	private String desc;
+	
 	@JsonIgnore
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "category")
 	private List<Book> books = new ArrayList<>();
 	
-	public User() {
+	public Category() {
+		
 	}
-
-	public User(Long id, String name, String email, String phone, String password) {
+		
+	public Category(Long id, String desc) {
 		super();
 		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.phone = phone;
-		this.password = password;
+		this.desc = desc;
 	}
 
 	public Long getId() {
@@ -51,42 +47,14 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getDesc() {
+		return desc;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public List<Book> getBooks() {
-		return books;
-	}
-	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -100,9 +68,10 @@ public class User implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		Category other = (Category) obj;
 		return Objects.equals(id, other.id);
 	}
 
 	
+
 }
